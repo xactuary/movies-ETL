@@ -9,4 +9,4 @@ Using a combination of Pandas, Python and the ETL process, we were able to creat
   MovieLens data with Ratings of Movies
 ### ANALYSIS
 1.  Create an ETL function function to read in three data files
-  
+![](https://github.com/xactuary/movies-ETL/blob/main/Resources/Function_1.PNG)
