@@ -18,3 +18,7 @@ This part is extensive in edits due to the varying nature of the Json data that 
  1.  The first step is to remove the TV shows.  There is a variable called "No. of episodes" which shows a digit greater than 1 for serialized programs that can be used to remove the TV shows from the data.  Using the following list comprehension code, I identify 6 cases of TV shows in the data and remove them.  The resulting record count is 7,305.
    >  wiki_movies = [movie for movie in wiki_movies_raw
       if 'No. of episodes' in movie]
+2.  the ext step is to clean up the imdb_id using regex code.  Imdb strings in the wiki look this this usually https://www.imdb.com/title/tt1234567/," with "tt1234567.  So the Regex code to standardize this is:
+> wiki_movies_df['imdb_id'] = wiki_movies_df['imdb_link'].str.extract(r'(tt\d{7})')  
+  
+Although the project requested a try/except, the code did not find any exceptions.
