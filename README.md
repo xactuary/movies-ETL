@@ -10,3 +10,11 @@ Using a combination of Pandas, Python and the ETL process, we were able to creat
 ### ANALYSIS
 1.  Create an ETL function function to read in three data files
 ![](https://github.com/xactuary/movies-ETL/blob/main/Resources/Function_1.PNG)
+2. Cleaning the Wikipedia Data
+  
+This part is extensive in edits due to the varying nature of the Json data that comes from Wikipedia.  The first step is to review the data.  There are 193 variables and 7,311 records.  This is too many records and variables to individually inspect so I have written a function that will clean it up before I put it in the SQL database.  
+ 
+ Cleaning Steps
+ 1.  The first step is to remove the TV shows.  There is a variable called "No. of episodes" which shows a digit greater than 1 for serialized programs that can be used to remove the TV shows from the data.  Using the following list comprehension code, I identify 6 cases of TV shows in the data and remove them.  The resulting record count is 7,305.
+   >  wiki_movies = [movie for movie in wiki_movies_raw
+      if 'No. of episodes' in movie]
