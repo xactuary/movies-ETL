@@ -22,6 +22,19 @@ This part is extensive in edits due to the varying nature of the Json data that 
 > wiki_movies_df['imdb_id'] = wiki_movies_df['imdb_link'].str.extract(r'(tt\d{7})')  
   
 Although the project requested a try/except, the code did not find any exceptions.
-3.  for step 3, columns that contained blanks for more than 90% of the occurrences were dropped.  
+3.  For step 3, columns that contained blanks for more than 90% of the occurrences were dropped.  
 > wiki_columns_to_keep = [column for column in wiki_movies_df.columns if wiki_movies_df[column].isnull().sum() < len(wiki_movies_df) * 0.9]  
+4.  Using similar Regex expressions, the next 2 cleaning steps changed what should be numeric data to numeric.  These variables include Box_office receipts and budget which are dollar amounts.  Most of the cases fit in these two categories:
+> form_one = form_one = r'\$\s*\d+\.?\d*\s*[mb]illi?on' 
+> form_two = r'\$\s*\d{1,3}(?:[,\.]\d{3})+(?!\s[mb]illion)'  
+
+4.  the release date variable was cleaned up using Regex and parsing. There are 4 basic forms for this date: 
+>  date_form_one = r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s[123]\d,\s\d{4}'  
+>  date_form_two = r'\d{4}.[01]\d.[123]\d'  
+>  date_form_three = r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}'  
+>  date_form_four = r'\d{4}'  
+
+
+
+
 
